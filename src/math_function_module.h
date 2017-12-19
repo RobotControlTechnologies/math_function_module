@@ -33,7 +33,11 @@ class MathFunctionModule : public FunctionModule {
 
   // intepreter - devices
 #if MODULE_API_VERSION > 100
-  int init();
+  #if MODULE_API_VERSION == 102
+    int init(initCallback_t& initCallback);
+  #else
+    int init();
+  #endif
   void final() {};
   
   // intepreter - program & lib
@@ -48,7 +52,6 @@ class MathFunctionModule : public FunctionModule {
   int startProgram(int run_index);
   FunctionResult *executeFunction(system_value function_index, void **args);
 #endif
-
   
   int endProgram(int run_index);
 
