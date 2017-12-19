@@ -78,7 +78,12 @@ void *MathFunctionModule::writePC(unsigned int *buffer_length) {
 }
 
 #if MODULE_API_VERSION > 100
-int MathFunctionModule::init() { return 0; }
+  #if MODULE_API_VERSION == 102
+    int MathFunctionModule::init(initCallback_t& initCallback)
+  #else
+    int MathFunctionModule::init() 
+  #endif
+  { return 0; }
 int MathFunctionModule::readPC(int pc_index, void *buffer, unsigned int buffer_length) { return 0; }
 int MathFunctionModule::startProgram(int run_index, int pc_index) { return 0; }
 #else
@@ -186,10 +191,6 @@ FunctionResult *MathFunctionModule::executeFunction(system_value function_index,
 #endif
   }
 }
-
-#if MODULE_API_VERSION == 102
-  int MathFunctionModule::init(initCallback_t& initCallback) { return init(); }
-#endif
 
 int MathFunctionModule::endProgram(int run_index) { return 0; }
 
