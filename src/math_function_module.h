@@ -49,6 +49,9 @@ class MathFunctionModule : public FunctionModule {
   FunctionResult *executeFunction(system_value function_index, void **args);
 #endif
 
+#if MODULE_API_VERSION == 102
+  int init(initCallback_t& initCallback);
+#endif
   
   int endProgram(int run_index);
 

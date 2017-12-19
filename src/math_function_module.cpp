@@ -187,6 +187,10 @@ FunctionResult *MathFunctionModule::executeFunction(system_value function_index,
   }
 }
 
+#if MODULE_API_VERSION == 102
+  int MathFunctionModule::init(initCallback_t& initCallback) { return init(); }
+#endif
+
 int MathFunctionModule::endProgram(int run_index) { return 0; }
 
 void MathFunctionModule::destroy() {
